@@ -2,9 +2,11 @@
 wordle solver
 
 Execute with...
-  cargo run --release play
+  **cargo run --release play**
+  
 wordlesolver will respond with a guess. After you enter the guess in wordle, enter the clue you got back.
-For the clue, use " " for missed letters, "Y" for yellow letters and "G" for green. Your clue will look
+
+To enter the clue, use " " for missed letters, "Y" for yellow letters and "G" for green. The clue you enter should look
 something like "  Y  " or " G   "
 
 
