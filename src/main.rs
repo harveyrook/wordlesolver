@@ -85,7 +85,7 @@ fn score(word_set: &HashSet<&str>) -> String {
     let mut max_score: f64 = 0.0;
     let mut max_fscore: f64 = 0.0;
     let mut max_word = String::from("");
-    let mut min_of_max: usize = 10000;
+    let min_of_max: usize = 10000;
 
     let all_words = goalwords::GOALWORDS
         .iter()
@@ -116,7 +116,7 @@ fn score(word_set: &HashSet<&str>) -> String {
         let score: f64 = counted.len() as f64;
 
         // Given a cluse set, calculate the maximum clue size.
-        let max_clue_size = counted
+        let _max_clue_size = counted
             .iter()
             .map(|(_key, value)| value)
             .max()
@@ -294,32 +294,10 @@ fn play_wordle() {
             acc
         });
 
-    let mut recommend = String::from("soare");
-    let mut clue = String::new();
-
-    /*
-    println!("Enter clue...");
-    io::stdin()
-        .read_line(&mut clue)
-        .expect("Failed to read line");
-
-    remove(&mut word_set, &recommend, &clue);
-
-    let count = word_set.len();
-    println!("{} possible words", count);
-
-    if count < 300 {
-        for word in &word_set {
-            print!("{} ", word);
-        }
-        println!(" ");
-    }
-    */
-
     while !word_set.is_empty() {
-        recommend = score(&word_set);
+        let recommend = score(&word_set);
 
-        clue = String::new();
+        let mut clue = String::new();
 
         println!("Enter clue...");
         io::stdin()
@@ -395,7 +373,7 @@ fn main() {
         let all_words = goalwords::GOALWORDS
             .iter()
             .chain(morewords::MOREWORDS.iter());
-        let all_words_count: f64 = all_words.count() as f64;
+        let _all_words_count: f64 = all_words.count() as f64;
 
         let all_words = goalwords::GOALWORDS
             .iter()
