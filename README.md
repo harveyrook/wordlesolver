@@ -12,4 +12,7 @@ something like "  Y  " or " G   "
 
 There are a few other options that just calculate stats for the words
 
+Wordlesovler uses [Shanon Entropy](https://en.wikipedia.org/wiki/Entropy_(information_theory)) to rank the possible words. As such, "SOARE" is the first guess. A few other ways of ranking the words are built in, but commented out. From experience, is slightly better than the rest.
+
+My next goal is to evaulate that rigorusly.
 
