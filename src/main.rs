@@ -226,6 +226,13 @@ fn remove(word_set: &mut HashSet<&str>, guess: &str, clue: &str) {
         if !remove {
             for i in 0..5 {
                 if clue_chars[i] == 'Y' {
+
+                    if guess_chars[i]==word_chars[i]{
+                        // This should have been a 'G'
+                        remove=true;
+                        break;
+                    }
+
                     // If the clue is Y then search for that letter.
                     // For Y, valid matches only happen when the match is not in the same position.
                     let found = word_chars.iter().enumerate().find_map(|(j, c)| {
@@ -240,10 +247,10 @@ fn remove(word_set: &mut HashSet<&str>, guess: &str, clue: &str) {
                         if j != i {
                             word_chars[j] = ' '; // Don't match this letter again.
                         } else {
-                            remove = true; // This clue should have been 'G'
+                            remove=true; // This clue should have been 'G'
                         }
                     } else {
-                        remove = true; // Didn't find the matching letter.
+                        remove=true; // Didn't find the matching letter.
                     }
                 }
 
@@ -525,4 +532,45 @@ fn ggg_test() {
 
     assert_eq!(a.contains("crack"), false);
     assert_eq!(a.contains("cramp"), true);
+}
+
+#[test]
+fn soare_await_test() {
+    let a = compare_words("await","soare");
+    assert_eq!(a.eq("  G  "), true);
+}
+
+
+#[test]
+fn soare_await_test2() {
+    let mut b = HashSet::<&str>::new();
+    b.insert("await");
+    b.insert("admit");
+    b.insert("avail");
+
+    remove(&mut b, "soare","  Y  ");
+    assert_eq!(b.contains("admit"), true);
+    assert_eq!(b.contains("await"), false);
+}
+
+
+#[test]
+fn big_soare_test() {
+    
+    let str_await = String::from("await");
+    let str_admit = String::from("admit");
+
+    let mut word_set = goalwords::GOALWORDS
+        .iter()
+        .skip_while(|x|{ !str_await.eq(*x) && !str_admit.eq(*x)} )
+        .fold(HashSet::<&str>::new(), |mut acc, word| {
+            acc.insert(word);
+            acc
+        });
+
+    remove( &mut word_set, "soare","  Y  ");
+
+    assert_eq!(word_set.contains("admit"), true);
+    assert_eq!(word_set.contains("await"), false);
+
 }
