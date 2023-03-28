@@ -1,5 +1,5 @@
-// Set contains 10666 words
-pub static MOREWORDS: [&str; 10665] = [
+// Set contains 10665 words
+pub static MOREWORDS: [&str; 10664] = [
     "senas", "wiles", "grike", "mater", "fatso", "alant", "hames", "poaka", "babas", "halwa",
     "newie", "corse", "plumy", "regar", "soler", "casus", "coate", "imaum", "khoja", "mecks",
     "stonk", "pavid", "infos", "slues", "gowfs", "dykes", "glaik", "avels", "gilpy", "felts",
@@ -324,7 +324,7 @@ pub static MOREWORDS: [&str; 10665] = [
     "liman", "kamis", "cabob", "taels", "longa", "barre", "gamin", "achoo", "liney", "kains",
     "luaus", "psion", "casts", "dorty", "knurs", "quoin", "resit", "tofus", "tyran", "zilas",
     "veers", "balls", "benes", "eldin", "cubed", "wicky", "kbars", "flawy", "dures", "pulas",
-    "coves", "guano", "kissy", "clods", "pyric", "makes", "vests", "pumie", "crees", "yeard",
+    "coves", "kissy", "clods", "pyric", "makes", "vests", "pumie", "crees", "yeard",
     "padma", "kipes", "viler", "balti", "rises", "pecke", "pseud", "repps", "atman", "quoit",
     "pipal", "ronne", "sloom", "viver", "aimed", "bumps", "gnats", "embog", "reded", "jeeze",
     "salmi", "aerie", "swith", "curls", "kuzus", "reeds", "nitre", "silds", "caked", "palmy",
