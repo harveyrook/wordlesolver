@@ -14,6 +14,8 @@ struct GuessTree {
     guess: &'static str,
     tree: HashMap< String, GuessTree>,
     score: usize,
+    left_over: usize,
+    left_word: Option<&'static str>,
 } 
 
 #[derive(Parser, Debug)]
@@ -141,16 +143,24 @@ impl WordleGame {
         
     }
 
-    fn print_guess_tree( node: GuessTree, indent: Option<String>){
+    fn print_guess_tree( node: GuessTree, indent: Option<String>) -> usize {
 
         let mut spaces=indent.unwrap_or(" ".into());
-        println!("{}, {} score={}", spaces, node.guess, node.score);    
+        let mut total = node.left_over;
+        
+        if let Some(w) = node.left_word {
+            println!("{}, {} score={} left={}", spaces, node.guess, node.score, w);    
+        }
+        else {
+            println!("{}, {} score={}", spaces, node.guess, node.score);
+        }
         spaces.push('\t');
         for (s, g) in node.tree {
             println!("|{}| |{}|", spaces.clone(), s);
-            Self::print_guess_tree( g, Some(spaces.clone()));
+            total += Self::print_guess_tree( g, Some(spaces.clone()));
         }
 
+        total
     }
 
     fn play_all_wordle(&self) {
@@ -160,15 +170,17 @@ impl WordleGame {
         let f = p.iter().position(|&a| a.eq(&self.root_word));
 
         if let Some(position)=f {
-            let( _score, guess_tree) = self.play_wordle_with_word(
+            let guess_tree = self.play_wordle_with_word(
                 1,
                 p[position],
                 p,
                 self.get_goal_words());
 
-            WordleGame::print_guess_tree(
-                guess_tree.unwrap(),
-                None);
+            let lefttotal = WordleGame::print_guess_tree(
+                    guess_tree.unwrap(),
+                    None);
+
+            print!("{} words were at level 4", lefttotal);
             
         }
         else {
@@ -187,7 +199,7 @@ impl WordleGame {
         &self,
         depth: usize,
         guesses: &WordSet, 
-        goals: &WordSet)-> (usize, Option<GuessTree>) {
+        goals: &WordSet)-> Option<GuessTree> {
 
         let mut best_score = 0;
         let mut best_guess: Option<GuessTree> = None; 
@@ -196,21 +208,21 @@ impl WordleGame {
         for guess in guesses {
 
 
-            let (score, guess_tree) = WordleGame::play_wordle_with_word( self, depth, guess, &guesses, &goals );
-            if score>best_score {
+            let guess_tree = WordleGame::play_wordle_with_word( self, depth, guess, &guesses, &goals );
+            if let Some(tree) = guess_tree  {
+                if tree.score > best_score {
 
-                best_score = score;
-                best_guess = guess_tree;
+                    best_score = tree.score;
+                    best_guess = Some(tree);
 
-                if depth==0 {
-                    println!("{},{}", best_score, guess);
+                    if depth==0 {
+                        println!("{},{}", best_score, guess);
+                    }
                 }
             }
-
-
         }
 
-        (best_score, best_guess)
+        best_guess
 
     }
 
@@ -220,7 +232,7 @@ impl WordleGame {
         guess: &'static str, 
         guesses: &WordSet,
         goals: &WordSet) 
-        -> (usize, Option<GuessTree>){
+        -> Option<GuessTree>{
 
             // Three cases
             // 1. The guess is the goal. In that case return a low score
@@ -240,7 +252,7 @@ impl WordleGame {
             if goals.len() == 1{
                 if goals[0].eq(guess){
                     ret_score = 10;               
-                    ret_guess_tree = Some(GuessTree{ guess: guess, tree: HashMap::new(), score: 10});    
+                    ret_guess_tree = Some(GuessTree{ guess: guess, tree: HashMap::new(), score: 10, left_over:0, left_word: None, });    
                 }else{
                     ret_score = 0;
                     ret_guess_tree = None;
@@ -249,15 +261,19 @@ impl WordleGame {
                 // Case 1.5 There are two possible goals. 50/50 chance we guess right.
                 // Rather than decending into a tree of two, or abanding the search if the tree is 3, we assign a half score--
                 // 50% chance we would get this at the 4th level.
+                let mut left = 0;
+                let mut word: Option<&'static str> = None; 
                 if depth == 3 {
                     ret_score = 5;
+                    word = Some(goals[1]);
+                    left = 1;
                 }else {
                     ret_score = 10;
                 }            
-                ret_guess_tree = Some(GuessTree{ guess: guess, tree: HashMap::new(), score: ret_score});    
+                ret_guess_tree = Some(GuessTree{ guess: guess, tree: HashMap::new(), score: ret_score, left_over: left, left_word: word, });    
             }else if depth==3 {
                     ret_score = 0;
-                    ret_guess_tree = None;
+                    ret_guess_tree = Some(GuessTree{ guess: guess, tree: HashMap::new(), score: ret_score, left_over: goals.len(), left_word: Some(goals[1])});
             }else{
 
                 let mut map: HashMap<String,WordSet>  = HashMap::new();
@@ -276,7 +292,7 @@ impl WordleGame {
                 }else{
 
                     let mut this_score: usize=0;
-                    let mut this_guess =  GuessTree{guess: guess, tree: HashMap::new(), score: 0 };
+                    let mut this_guess =  GuessTree{guess: guess, tree: HashMap::new(), score: 0, left_over: 0, left_word: None, };
 
                     for (sub_clue,sub_goals) in map {
 
@@ -284,14 +300,14 @@ impl WordleGame {
                             guesses, 
                             &sub_goals);
 
-                        let (current_score, current_guess_tree) = self.play_wordle_with_sets(
+                        let current_guess_tree = self.play_wordle_with_sets(
                             depth+1,
                             &relevant_words,
                             &sub_goals
                             );
 
                         if let Some(ct) = current_guess_tree {
-                            this_score += current_score;
+                            this_score += ct.score;
                             this_guess.tree.insert(sub_clue,ct);
                         
                         }
@@ -311,7 +327,7 @@ impl WordleGame {
         }
 
     
-        (ret_score, ret_guess_tree)
+        ret_guess_tree
 
     }
 
