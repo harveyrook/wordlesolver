@@ -1,5 +1,5 @@
-// Set contains 10665 words
-pub static MOREWORDS: [&str; 10664] = [
+// Set contains 10661 words
+pub static MOREWORDS: [&str; 10661] = [
     "senas", "wiles", "grike", "mater", "fatso", "alant", "hames", "poaka", "babas", "halwa",
     "newie", "corse", "plumy", "regar", "soler", "casus", "coate", "imaum", "khoja", "mecks",
     "stonk", "pavid", "infos", "slues", "gowfs", "dykes", "glaik", "avels", "gilpy", "felts",
@@ -142,7 +142,7 @@ pub static MOREWORDS: [&str; 10664] = [
     "fytte", "wussy", "intil", "dunks", "krone", "salet", "zabra", "gairs", "drear", "tizzy",
     "bongs", "nodes", "oonts", "lisks", "solah", "annas", "nukes", "stulm", "tarre", "broch",
     "eches", "tassa", "glede", "queys", "fleam", "topee", "ulnad", "valis", "wried", "fogou",
-    "hemps", "saugh", "slaws", "xenon", "coady", "deets", "pocky", "snafu", "clays", "comms",
+    "hemps", "saugh", "slaws", "xenon", "coady", "deets", "pocky", "clays", "comms",
     "nided", "nyssa", "doggo", "dowds", "getup", "mythy", "crewe", "feers", "lawns", "raxes",
     "racon", "scuzz", "sefer", "alcid", "crake", "pinup", "polio", "musos", "norms", "fount",
     "lambs", "shmoe", "texas", "gowns", "indie", "roneo", "ailed", "renay", "kitul", "soots",
@@ -352,7 +352,7 @@ pub static MOREWORDS: [&str; 10664] = [
     "desex", "awols", "rudds", "faena", "bards", "bulse", "eloin", "gurly", "moues", "namma",
     "ratha", "jorum", "istle", "frits", "kenos", "abyes", "leats", "acred", "hotty", "nandu",
     "ropey", "gutty", "mihis", "gleys", "muton", "ainga", "unlet", "hyles", "omens", "scend",
-    "romps", "puris", "squaw", "loner", "faked", "junco", "mitts", "busky", "buffo", "prosy",
+    "romps", "puris", "squaw", "faked", "junco", "mitts", "busky", "buffo", "prosy",
     "dazed", "tuans", "fisks", "elchi", "geyan", "aroha", "hallo", "iched", "tolus", "yowie",
     "praam", "kadai", "ahold", "royst", "leear", "redan", "raggs", "skosh", "wiggy", "chips",
     "miles", "snaps", "gwine", "waxed", "feint", "coyed", "pukka", "pened", "butts", "sabra",
@@ -569,7 +569,7 @@ pub static MOREWORDS: [&str; 10664] = [
     "kayos", "resay", "vagus", "swank", "weald", "blags", "coost", "turns", "femal", "brent",
     "sokah", "ament", "cooer", "gravs", "weeke", "meets", "cutis", "faffy", "almas", "odyle",
     "piped", "roams", "crore", "spims", "whows", "drays", "crape", "roary", "buffe", "sehri",
-    "takis", "zeros", "boner", "delts", "glims", "locks", "cubit", "hulls", "jades", "nyaff",
+    "takis", "zeros", "delts", "glims", "locks", "cubit", "hulls", "jades", "nyaff",
     "timed", "vales", "glute", "ulyie", "vexil", "musca", "gadge", "bulla", "ovolo", "peals",
     "filmi", "fremd", "rammy", "cimar", "mucro", "rance", "tabor", "soths", "cubby", "spane",
     "plums", "bowls", "dashi", "diyas", "dosas", "enoki", "madge", "pervs", "yeses", "nanna",
