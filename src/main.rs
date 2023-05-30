@@ -73,7 +73,7 @@ fn get_printable_WordSet( words: &WordSet)-> Option<String>{
 
 struct WordleGame {
 
-    root_word: String,
+    root_word: &'static str,
     all_words: WordSet,
     goal_words: WordSet,
     more_words: WordSet,
@@ -94,10 +94,13 @@ impl WordleGame {
 
         let a = HashSet::from_iter(goalwords::GOALWORDS.iter().map(|&x| x));
         let b = HashSet::from_iter(morewords::MOREWORDS.iter().map(|&x| x));
+        let all = HashSet::from_iter(a.iter().map(|&x| x).chain(b.iter().map(|&x| x)));
+
+        let root_static = all.get(root.as_str());
 
         Self { 
-            root_word: root.clone(),
-            all_words: HashSet::from_iter(a.iter().map(|&x| x).chain(b.iter().map(|&x| x))),
+            root_word: root_static.unwrap(),
+            all_words: all,
             goal_words: a,
             more_words: b,
         }
@@ -117,31 +120,30 @@ impl WordleGame {
 
     fn get_relevant_words(
             &self,
-            _guess_set: &WordSet,
-            _goal_set: &WordSet) -> &WordSet {
+            guess_set: &WordSet,
+            goal_set: &WordSet) -> WordSet {
 
-        //let mut bloom: Vec<bool> = vec![false; 256];
+        let mut bloom: Vec<bool> = vec![false; 256];
 
-        //for word in goal_set{
-        //    for c in (*word).chars() {
-        //        bloom[c as usize] = true;
-        //    }
-        //}
+        for word in goal_set {
+            for c in (*word).chars() {
+                bloom[c as usize] = true;
+            }
+        }
+        let mut relevant: WordSet = WordSet::new();
 
-        //let mut relevant: WordSet = WordSet::new();
+        for word in guess_set {
+            for c in (*word).chars() {
+                if bloom[c as usize] {
+                    relevant.insert(word);
+                    break;
+                }
+            }
+        }
 
-        //for word in guess_set {
-        //    for c in (*word).chars() {
-        //        if bloom[c as usize] {
-        //            relevant.push(word);
-        //            break;
-        //        }
-        //    }
-        //}
+        relevant
 
-        //relevant
-
-        self.get_all_words()
+        //self.get_all_words()
         
     }
 
@@ -170,30 +172,22 @@ impl WordleGame {
 
         // Find the static version of the word.
         let p = wg.get_all_words();
-        let f = p.get::<&str>(&wg.root_word.as_str());
 
-        if let Some(position)=f {
+        let goals = wg.get_goal_words();
 
-            let goals = wg.get_goal_words();
+        let guess_tree = WordleGame::play_wordle_with_word(
+            wg,
+            1,
+            wg.root_word,
+            p,
+            goals);
 
-            let guess_tree = WordleGame::play_wordle_with_word(
-                wg,
-                1,
-                position,
-                p,
-                goals);
+        let lefttotal = WordleGame::print_guess_tree(
+                guess_tree.unwrap(),
+                None);
 
-            let lefttotal = WordleGame::print_guess_tree(
-                    guess_tree.unwrap(),
-                    None);
-
-            print!("{} words were at level 4", lefttotal);
-            
-        }
-        else {
-            print!("Word {} not allowed.", wg.root_word);
-            
-        }
+        print!("{} words were at level 4", lefttotal);
+        
 
 //        let (_score, guess_tree) = WordleGame::play_wordle_with_sets(
 //                1,

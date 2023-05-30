@@ -1,5 +1,5 @@
 // Set contains 10661 words
-pub static MOREWORDS: [&str; 10661] = [
+pub static MOREWORDS: [&str; 10660] = [
     "senas", "wiles", "grike", "mater", "fatso", "alant", "hames", "poaka", "babas", "halwa",
     "newie", "corse", "plumy", "regar", "soler", "casus", "coate", "imaum", "khoja", "mecks",
     "stonk", "pavid", "infos", "slues", "gowfs", "dykes", "glaik", "avels", "gilpy", "felts",
@@ -403,7 +403,7 @@ pub static MOREWORDS: [&str; 10661] = [
     "yedes", "tummy", "tasks", "hilum", "kaids", "galed", "iotas", "snags", "spang", "gizmo",
     "scuts", "doomy", "sorel", "visto", "fucus", "wised", "grece", "quich", "baser", "fifer",
     "skrik", "pryer", "furca", "flote", "waked", "reels", "fluor", "seaze", "tilak", "vehme",
-    "toads", "dorms", "douse", "soles", "betty", "reave", "gores", "skyey", "tenny", "fifes",
+    "toads", "dorms", "soles", "betty", "reave", "gores", "skyey", "tenny", "fifes",
     "jesus", "lacks", "spitz", "swigs", "caneh", "acker", "makos", "chuff", "cives", "reate",
     "axoid", "morae", "staws", "shalm", "groks", "lines", "peery", "reata", "coffs", "tical",
     "forel", "canst", "tufts", "walds", "wawls", "wheft", "amice", "accas", "brios", "gooks",

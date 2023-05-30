@@ -1,5 +1,5 @@
-//Set contains 2313 words
-pub static GOALWORDS: [&str; 2313] = [
+//Set contains 2313
+pub static GOALWORDS: [&str; 2314] = [
     "dilly", "fancy", "tempo", "leapt", "stray", "clang", "scram", "tibia", "valet", "satyr",
     "sugar", "midst", "prose", "scent", "pubic", "click", "cleft", "caulk", "error", "chafe",
     "enter", "geeky", "dwelt", "hunch", "blank", "topaz", "yacht", "toast", "truly", "egret",
@@ -231,5 +231,5 @@ pub static GOALWORDS: [&str; 2313] = [
     "spent", "yearn", "throw", "fatal", "macaw", "bread", "quack", "retro", "flume", "sheik",
     "psalm", "lyric", "ranch", "scamp", "debug", "slant", "talon", "abort", "gayer", "mummy",
     "sedan", "adopt", "vocal", "gazer", "tipsy", "stack", "niche", "usurp", "posit", "guano",
-    "snafu", "loner", "boner",
+    "snafu", "loner", "boner", "douse"
 ];
