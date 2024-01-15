@@ -552,8 +552,11 @@ impl WordleGame {
                 acc
             });
 
+        let mut recommend = String::from("slate");
+        println!("Guess... slate");
+        //let mut recommend = WordleGame::score(&word_set);
+
         while !word_set.is_empty() {
-            let recommend = WordleGame::score(&word_set);
 
             let mut clue = String::new();
 
@@ -573,6 +576,8 @@ impl WordleGame {
                 }
                 println!(" ");
             }
+
+            recommend = WordleGame::score(&word_set);
         }
     }
 }
