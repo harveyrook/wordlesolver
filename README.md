@@ -1,4 +1,5 @@
 # wordlesolver
+
 wordle solver
 
 Execute with...
