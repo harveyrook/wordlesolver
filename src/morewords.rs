@@ -1,5 +1,5 @@
 // Set contains 10666 words
-pub static MOREWORDS: [&str; 10665] = [
+pub static MOREWORDS: [&str; 10664] = [
     "senas", "wiles", "grike", "mater", "fatso", "alant", "hames", "poaka", "babas", "halwa",
     "newie", "corse", "plumy", "regar", "soler", "casus", "coate", "imaum", "khoja", "mecks",
     "stonk", "pavid", "infos", "slues", "gowfs", "dykes", "glaik", "avels", "gilpy", "felts",
@@ -735,7 +735,7 @@ pub static MOREWORDS: [&str; 10665] = [
     "duper", "ruana", "stook", "shaly", "roper", "middy", "foyne", "spumy", "raird", "bourd",
     "poulp", "divvy", "mimeo", "kukri", "pitot", "orals", "stoae", "dorts", "tumpy", "doyly",
     "notum", "sarin", "snugs", "dowts", "pling", "adown", "baloo", "piend", "skews", "didos",
-    "tauts", "betid", "laser", "ngana", "stope", "cists", "simas", "rabat", "ganof", "cions",
+    "tauts", "betid", "ngana", "stope", "cists", "simas", "rabat", "ganof", "cions",
     "cymae", "gesso", "lisps", "duppy", "proin", "shish", "skivy", "swarf", "taigs", "taped",
     "wexed", "whilk", "boles", "cohog", "luxes", "haars", "horal", "noses", "yaird", "zoppa",
     "baaed", "gnows", "loipe", "abord", "sicht", "pampa", "toper", "axels", "vases", "obeah",
